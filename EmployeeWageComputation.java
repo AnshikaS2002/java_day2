@@ -64,6 +64,10 @@ public class EmployeeWageComputation {
         return dailyWage * 20;
     }
 
+    int maximumWage() {
+        return 100 * 20 * 20;
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation Program");
     }
