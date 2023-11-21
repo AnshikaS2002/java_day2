@@ -17,6 +17,15 @@ public class EmployeeWageComputation {
         }
     }
 
+    int partTimeWage() {
+        EmployeeWageComputation ewc = new EmployeeWageComputation();
+        if (ewc.checkAttendance()) {
+            return (20 * 4);
+        } else {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation Program");
     }
