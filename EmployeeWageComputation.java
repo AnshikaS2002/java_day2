@@ -8,6 +8,15 @@ public class EmployeeWageComputation {
         return (present == 1);
     }
 
+    int dailyWage() {
+        EmployeeWageComputation ewc = new EmployeeWageComputation();
+        if (ewc.checkAttendance()) {
+            return (20 * 8);
+        } else {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation Program");
     }
