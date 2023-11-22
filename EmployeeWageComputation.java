@@ -2,73 +2,62 @@ import java.util.Random;
 
 public class EmployeeWageComputation {
 
-    int checkAttendance() {
+    private static final int FULL_DAY_HOURS = 8;
+    private static final int PART_TIME_HOURS = 4;
+    private static final int HOURLY_WAGE = 20;
+    private static final int WORKING_DAYS = 20;
+    private static final int WORKING_HOURS = 100;
+
+    private int checkAttendance() {
         Random random = new Random();
-        int present = random.nextInt(2);
-        return (present == 1) ? 1 : 0;
+        return random.nextInt(3);
     }
 
-    int dailyWage() {
-        EmployeeWageComputation ewc = new EmployeeWageComputation();
-        if (ewc.checkAttendance() == 1) {
-            return (20 * 8);
+    private int calculateDailyWageWithSwitch(int attendance) {
+        switch (attendance) {
+            case 2:
+                return HOURLY_WAGE * FULL_DAY_HOURS;
+            case 1:
+                return HOURLY_WAGE * PART_TIME_HOURS;
+            default:
+                return 0;
+        }
+    }
+
+    private int calculateDailyWageWithoutSwitch(int attendance) {
+        if (attendance == 2) {
+            return HOURLY_WAGE * FULL_DAY_HOURS;
+        } else if (attendance == 1) {
+            return HOURLY_WAGE * PART_TIME_HOURS;
         } else {
             return 0;
         }
     }
 
-    int partTimeWage() {
-        EmployeeWageComputation ewc = new EmployeeWageComputation();
-        if (ewc.checkAttendance() == 1) {
-            return (20 * 4);
-        } else {
-            return 0;
+    private int calculateMonthlyWage() {
+        int totalWage = 0;
+        int totalHours = 0;
+
+        for (int day = 0; day < WORKING_DAYS; day++) {
+            int attendance = checkAttendance();
+            int dailyWage = calculateDailyWageWithoutSwitch(attendance);
+            totalWage += dailyWage;
+            totalHours += dailyWage / HOURLY_WAGE;
+
+            if (totalHours >= WORKING_HOURS) {
+                break;
+            }
         }
-    }
 
-    int dailyWageWithSwitch() {
-        EmployeeWageComputation ewc = new EmployeeWageComputation();
-        int present = ewc.checkAttendance();
-        int wage = 0;
-        switch (present) {
-            case 1:
-                wage = 20 * 8;
-                break;
-
-            default:
-                wage = 0;
-                break;
-        }
-        return wage;
-    }
-
-    int partTimeWageWithSwitch() {
-        EmployeeWageComputation ewc = new EmployeeWageComputation();
-        int present = ewc.checkAttendance();
-        int wage = 0;
-        switch (present) {
-            case 1:
-                wage = 20 * 4;
-                break;
-
-            default:
-                wage = 0;
-                break;
-        }
-        return wage;
-    }
-
-    int monthlyWage() {
-        EmployeeWageComputation ewc = new EmployeeWageComputation();
-        int dailyWage = ewc.dailyWage();
-        return dailyWage * 20;
-    }
-
-    int maximumWage() {
-        return 100 * 20 * 20;
+        return totalWage;
     }
 
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation Program");
+
+        EmployeeWageComputation ewc = new EmployeeWageComputation();
+        int monthlyWage = ewc.calculateMonthlyWage();
+
+        System.out.println("Monthly Wage: " + monthlyWage);
     }
 }
