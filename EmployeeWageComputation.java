@@ -8,12 +8,12 @@ public class EmployeeWageComputation {
     private static final int WORKING_DAYS = 20;
     private static final int WORKING_HOURS = 100;
 
-    private int checkAttendance() {
+    private static int checkAttendance() {
         Random random = new Random();
         return random.nextInt(3);
     }
 
-    private int calculateDailyWageWithSwitch(int attendance) {
+    private static int calculateDailyWageWithSwitch(int attendance) {
         switch (attendance) {
             case 2:
                 return HOURLY_WAGE * FULL_DAY_HOURS;
@@ -24,7 +24,7 @@ public class EmployeeWageComputation {
         }
     }
 
-    private int calculateDailyWageWithoutSwitch(int attendance) {
+    private static int calculateDailyWageWithoutSwitch(int attendance) {
         if (attendance == 2) {
             return HOURLY_WAGE * FULL_DAY_HOURS;
         } else if (attendance == 1) {
@@ -34,7 +34,7 @@ public class EmployeeWageComputation {
         }
     }
 
-    private int calculateMonthlyWage() {
+    public static int calculateMonthlyWage() {
         int totalWage = 0;
         int totalHours = 0;
 
@@ -55,8 +55,7 @@ public class EmployeeWageComputation {
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation Program");
 
-        EmployeeWageComputation ewc = new EmployeeWageComputation();
-        int monthlyWage = ewc.calculateMonthlyWage();
+        int monthlyWage = calculateMonthlyWage();
 
         System.out.println("Monthly Wage: " + monthlyWage);
     }
