@@ -11,13 +11,6 @@ class Line {
     public double calculateLength() {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
-}
-
-public class LineComparision {
-
-    boolean areEndpointsEqual(double x1L1, double y1L1, double x2L1, double y2L1, double x1L2, double y1L2, double x2L2, double y2L2) {
-        return (x1L1 == x1L2 && y1L1 == y1L2 && x2L1 == x2L2 && y2L1 == y2L2);
-    }
 
     void compareLines() {
         Line line1 = new Line(1.0, 2.0, 3.0, 4.0);
@@ -32,6 +25,14 @@ public class LineComparision {
         } else {
             System.out.println("Line 1 is equal in length to Line 2");
         }
+    }
+}
+
+public class LineComparision {
+
+    boolean areEndpointsEqual(double x1L1, double y1L1, double x2L1, double y2L1, double x1L2, double y1L2, double x2L2,
+            double y2L2) {
+        return (x1L1 == x1L2 && y1L1 == y1L2 && x2L1 == x2L2 && y2L1 == y2L2);
     }
 
     public static void main(String[] args) {
