@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class EmpWageBuilder {
     int numOfCompanies;
+    ArrayList<CompanyEmpWage> empList = new ArrayList<>();
 
     EmpWageBuilder(int numOfCompanies) {
         this.numOfCompanies = numOfCompanies;
@@ -10,7 +12,6 @@ public class EmpWageBuilder {
 
     void addCompanyWage() {
         Scanner scanner = new Scanner(System.in);
-        CompanyEmpWage empList[] = new CompanyEmpWage[numOfCompanies];
 
         for (int i = 0; i < numOfCompanies; i++) {
             System.out.println("Company " + (i + 1));
@@ -31,11 +32,11 @@ public class EmpWageBuilder {
             scanner.nextLine();
 
             CompanyEmpWage companyEmpWage = new CompanyEmpWage(hourlyWage, workingDays, workingHours, totalEmployees);
-            empList[i] = companyEmpWage;
+            empList.add(companyEmpWage);
         }
 
         for (int i = 0; i < numOfCompanies; i++) {
-            System.out.println("Total wage of company " + (i + 1) + " is " + empList[i].getTotalWage());
+            System.out.println("Total wage of company " + (i + 1) + " is " + empList.get(i).getTotalWage());
         }
     }
 }
