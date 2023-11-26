@@ -1,6 +1,13 @@
 import java.util.Random;
 
-public class CompanyEmpWage {
+interface CalculateWage {
+
+    int calculateMonthlyWage();
+
+    int getTotalWage();
+}
+
+public class CompanyEmpWage implements CalculateWage {
     private static final int FULL_DAY_HOURS = 8;
     private static final int PART_TIME_HOURS = 4;
 
