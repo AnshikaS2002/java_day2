@@ -1,64 +1,41 @@
 import java.util.Random;
+import java.util.Scanner;
 
-/**
- * EmpWageBuilder
- */
 public class EmpWageBuilder {
-    private static final int FULL_DAY_HOURS = 8;
-    private static final int PART_TIME_HOURS = 4;
+    int numOfCompanies;
 
-    int hourlyWage;
-    int workingDays;
-    int workingHours;
-
-    EmpWageBuilder(int hourlyWage, int workingDays, int workingHours) {
-        this.hourlyWage = hourlyWage;
-        this.workingDays = workingDays;
-        this.workingHours = workingHours;
+    EmpWageBuilder(int numOfCompanies) {
+        this.numOfCompanies = numOfCompanies;
     }
 
-    private static int checkAttendance() {
-        Random random = new Random();
-        return random.nextInt(3);
-    }
+    void addCompanyWage() {
+        Scanner scanner = new Scanner(System.in);
+        CompanyEmpWage empList[] = new CompanyEmpWage[numOfCompanies];
 
-    private static int calculateDailyWageWithSwitch(int attendance, int hourlyWage) {
-        switch (attendance) {
-            case 2:
-                return hourlyWage * FULL_DAY_HOURS;
-            case 1:
-                return hourlyWage * PART_TIME_HOURS;
-            default:
-                return 0;
-        }
-    }
+        for (int i = 0; i < numOfCompanies; i++) {
+            System.out.println("Company " + (i + 1));
+            System.out.print("Enter hourly wage : ");
+            int hourlyWage = scanner.nextInt();
+            scanner.nextLine();
 
-    private static int calculateDailyWageWithoutSwitch(int attendance, int hourlyWage) {
-        if (attendance == 2) {
-            return hourlyWage * FULL_DAY_HOURS;
-        } else if (attendance == 1) {
-            return hourlyWage * PART_TIME_HOURS;
-        } else {
-            return 0;
-        }
-    }
+            System.out.print("Enter max working days : ");
+            int workingDays = scanner.nextInt();
+            scanner.nextLine();
 
-    public int calculateMonthlyWage() {
-        int totalMonthlyWage = 0;
-        int totalHours = 0;
+            System.out.print("Enter max working hours : ");
+            int workingHours = scanner.nextInt();
+            scanner.nextLine();
 
-        for (int day = 0; day < workingDays; day++) {
-            int attendance = checkAttendance();
-            int dailyWage = calculateDailyWageWithoutSwitch(attendance, hourlyWage);
-            totalMonthlyWage += dailyWage;
-            totalHours += dailyWage / hourlyWage;
+            System.out.print("Enter total number of employees : ");
+            int totalEmployees = scanner.nextInt();
+            scanner.nextLine();
 
-            if (totalHours >= workingHours) {
-                break;
-            }
+            CompanyEmpWage companyEmpWage = new CompanyEmpWage(hourlyWage, workingDays, workingHours, totalEmployees);
+            empList[i] = companyEmpWage;
         }
 
-        return totalMonthlyWage;
+        for (int i = 0; i < numOfCompanies; i++) {
+            System.out.println("Total wage of company " + (i + 1) + " is " + empList[i].getTotalWage());
+        }
     }
-
 }
