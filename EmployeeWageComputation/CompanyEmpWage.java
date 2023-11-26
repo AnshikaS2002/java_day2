@@ -23,12 +23,12 @@ public class CompanyEmpWage implements CalculateWage {
         this.empCnt = empCnt;
     }
 
-    private static int checkAttendance() {
+    public int checkAttendance() {
         Random random = new Random();
         return random.nextInt(3);
     }
 
-    private static int calculateDailyWageWithSwitch(int attendance, int hourlyWage) {
+    int calculateDailyWageWithSwitch(int attendance) {
         switch (attendance) {
             case 2:
                 return hourlyWage * FULL_DAY_HOURS;
@@ -39,7 +39,7 @@ public class CompanyEmpWage implements CalculateWage {
         }
     }
 
-    private static int calculateDailyWageWithoutSwitch(int attendance, int hourlyWage) {
+    int calculateDailyWageWithoutSwitch(int attendance) {
         if (attendance == 2) {
             return hourlyWage * FULL_DAY_HOURS;
         } else if (attendance == 1) {
@@ -55,7 +55,7 @@ public class CompanyEmpWage implements CalculateWage {
 
         for (int day = 0; day < workingDays; day++) {
             int attendance = checkAttendance();
-            int dailyWage = calculateDailyWageWithoutSwitch(attendance, hourlyWage);
+            int dailyWage = calculateDailyWageWithoutSwitch(attendance);
             totalMonthlyWage += dailyWage;
             totalHours += dailyWage / hourlyWage;
 

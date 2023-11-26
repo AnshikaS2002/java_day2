@@ -35,8 +35,15 @@ public class EmpWageBuilder {
             empList.add(companyEmpWage);
         }
 
+    }
+
+    void getCompanyWage() {
         for (int i = 0; i < numOfCompanies; i++) {
             System.out.println("Total wage of company " + (i + 1) + " is " + empList.get(i).getTotalWage());
+            int attendance = empList.get(i).checkAttendance();
+            System.out.println("Daily wage of company " + (i + 1) + " is "
+                    + empList.get(i).calculateDailyWageWithSwitch(attendance));
         }
     }
+
 }

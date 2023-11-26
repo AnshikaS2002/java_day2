@@ -13,6 +13,7 @@ public class EmployeeWageComputation {
         scanner.nextLine();
         EmpWageBuilder empWageBuilder = new EmpWageBuilder(numOfCompanies);
         empWageBuilder.addCompanyWage();
+        empWageBuilder.getCompanyWage();
         scanner.close();
     }
 }
